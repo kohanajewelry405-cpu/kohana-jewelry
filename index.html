@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kohana | Handmade Jewelry from Japan</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #faf8f5;
+      color: #3f3b37;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+
+    header {
+      background: rgba(250, 248, 245, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #ebe5df;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      letter-spacing: 3px;
+      font-weight: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 25px;
+      background:
+        linear-gradient(rgba(246,240,234,0.72), rgba(246,240,234,0.82)),
+        url("hero.jpg") center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero-small {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: clamp(46px, 8vw, 90px);
+      letter-spacing: 7px;
+      margin-bottom: 15px;
+    }
+
+    .hero h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 35px;
+      font-size: 15px;
+      color: #655e58;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 32px;
+      border: 1px solid #665d56;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #665d56;
+      color: white;
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title small {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: #8c8179;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 38px;
+    }
+
+    /* COLLECTION */
+
+    .collection {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+
+    .product {
+      text-align: center;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #eee7e0;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.03);
+    }
+
+    .product h3 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 21px;
+      margin-bottom: 4px;
+    }
+
+    .price {
+      color: #786e66;
+      font-size: 14px;
+    }
+
+    /* STORY */
+
+    .story-section {
+      background: #eee8e2;
+    }
+
+    .story {
+      max-width: 760px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .story h2 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 38px;
+      margin-bottom: 30px;
+    }
+
+    .story p {
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .japanese {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      margin-top: 35px;
+    }
+
+    /* CRAFT */
+
+    .craft {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+      text-align: center;
+    }
+
+    .craft-item h3 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .craft-item p {
+      font-size: 14px;
+      color: #746c65;
+    }
+
+    /* SHOP */
+
+    .shop-section {
+      text-align: center;
+      background: #f6f2ee;
+    }
+
+    .shop-section h2 {
+      font-family: Georgia, serif;
+      font-size: 40px;
+      font-weight: normal;
+      margin-bottom: 18px;
+    }
+
+    .shop-section p {
+      margin-bottom: 30px;
+      color: #716860;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 55px 20px;
+      background: #3f3a36;
+      color: #f5f0eb;
+    }
+
+    .footer-logo {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 12px;
+      letter-spacing: 1px;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+
+    .social {
+      margin-top: 20px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .craft {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      section {
+        padding: 75px 20px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <div class="nav">
+    <div class="logo">Kohana</div>
+
+    <nav class="nav-links">
+      <a href="#collection">Collection</a>
+      <a href="#about">Our Story</a>
+      <a href="#shop">Shop</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="hero-small">Handmade in Japan</div>
+
+    <h1>Kohana</h1>
+
+    <h2>A little flower to wear on your special days.</h2>
+
+    <p>
+      Delicate handmade jewelry created from carefully selected
+      Japanese materials.
+    </p>
+
+    <a href="#collection" class="button">Discover the Collection</a>
+
+  </div>
+</section>
+
+
+<!-- COLLECTION -->
+
+<section id="collection">
+
+  <div class="collection">
+
+    <div class="section-title">
+      <small>Kohana Jewelry</small>
+      <h2>Our Collection</h2>
+    </div>
+
+    <div class="products">
+
+
+      <!-- FLOWER DEW -->
+
+      <div class="product">
+        <div class="product-image">
+          <img src="flower-dew.jpg" alt="Flower Dew earrings">
+        </div>
+
+        <h3>Flower Dew</h3>
+        <div class="price">€20</div>
+      </div>
+
+
+      <!-- BLOSSOM DUET -->
+
+      <div class="product">
+        <div class="product-image">
+          <img src="blossom-duet.jpg" alt="Blossom Duet earrings">
+        </div>
+
+        <h3>Blossom Duet</h3>
+        <div class="price">€18</div>
+      </div>
+
+
+      <!-- ECLAT -->
+
+      <div class="product">
+        <div class="product-image">
+          <img src="eclat.jpg" alt="Éclat jewelry">
+        </div>
+
+        <h3>Éclat</h3>
+        <div class="price">€12</div>
+      </div>
+
+
+      <!-- LUMIERE DROPS -->
+
+      <div class="product">
+        <div class="product-image">
+          <img src="lumiere-drops.jpg" alt="Lumière Drops earrings">
+        </div>
+
+        <h3>Lumière Drops</h3>
+        <div class="price">€16</div>
+      </div>
+
+
+      <!-- AURORA -->
+
+      <div class="product">
+        <div class="product-image">
+          <img src="aurora.jpg" alt="Aurora ear cuff">
+        </div>
+
+        <h3>Aurora Ear Cuff</h3>
+        <div class="price">€12</div>
+      </div>
+
+
+      <!-- EQUILIBRE -->
+
+      <div class="product">
+        <div class="product-image">
+          <img src="equilibre.jpg" alt="Équilibre ring">
+        </div>
+
+        <h3>Équilibre Ring</h3>
+        <div class="price">€15</div>
+      </div>
+
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- BRAND STORY -->
+
+<section class="story-section" id="about">
+
+  <div class="story">
+
+    <h2>Our Story</h2>
+
+    <p>
+      Kohana means “little flower” in Japanese.
+    </p>
+
+    <p>
+      Inspired by the quiet beauty of flowers,
+      each piece is designed to bring a small touch of elegance
+      to everyday moments and special occasions.
+    </p>
+
+    <p>
+      Every piece is handmade by a Japanese artist
+      using carefully selected materials sourced from Japan.
+    </p>
+
+    <p>
+      From everyday elegance to the stage and bridal moments,
+      Kohana is jewelry made to become part of your story.
+    </p>
+
+    <div class="japanese">
+      小さな花を、あなたの日常に。
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- VALUES -->
+
+<section>
+
+  <div class="section-title">
+    <small>Made with Care</small>
+    <h2>The Kohana Philosophy</h2>
+  </div>
+
+  <div class="craft">
+
+    <div class="craft-item">
+      <h3>Made in Japan</h3>
+      <p>
+        Carefully selected materials sourced from Japan.
+      </p>
+    </div>
+
+    <div class="craft-item">
+      <h3>Handmade</h3>
+      <p>
+        Each piece is individually handmade with care.
+      </p>
+    </div>
+
+    <div class="craft-item">
+      <h3>For Your Moments</h3>
+      <p>
+        Jewelry for everyday life, the stage,
+        weddings and your most memorable days.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ETSY -->
+
+<section class="shop-section" id="shop">
+
+  <h2>Find Your Kohana</h2>
+
+  <p>
+    Discover the full collection in our Etsy shop.
+  </p>
+
+  <!-- あとでEtsyのURLに変更 -->
+  <a href="#" class="button">
+    Shop on Etsy
+  </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-logo">Kohana</div>
+
+  <p>MADE IN JAPAN</p>
+
+  <div class="social">
+    <!-- あとでInstagram URLに変更 -->
+    <a href="#">Instagram</a>
+  </div>
+
+  <p style="margin-top:30px;">
+    © 2026 Kohana. All rights reserved.
+  </p>
+
+</footer>
+
+</body>
+</html>
